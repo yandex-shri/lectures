@@ -13,3 +13,7 @@
     git ls-files . --exclude-standard --others -z | xargs -0 -I {} mv {} ~/.Trash/
 
 присылайте пулл реквесты с решением для SVN или с более элегантным подходом.
+
+Добавлю свой вариант решения для SVN:
+
+	svn st -v | grep '?' | sed s/\s*\?\s*//g | xargs -I % mv % ~/.Trash/
