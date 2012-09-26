@@ -16,4 +16,4 @@
 
 Добавлю свой вариант решения для SVN:
 
-	svn st -v | grep '?' | sed s/\s*\?\s*//g | xargs -I % mv % ~/.Trash/
+	svn st -v | grep ^? | sed s/\s*\?\s*//g | xargs -I % mv % ~/.Trash/
