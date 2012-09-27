@@ -13,3 +13,7 @@
     git ls-files . --exclude-standard --others -z | xargs -0 -I {} mv {} ~/.Trash/
 
 присылайте пулл реквесты с решением для SVN или с более элегантным подходом.
+
+
+**Мое решение домашнего задания**
+- [Проект Shiroq](https://github.com/Shuhrat/shiroq)
