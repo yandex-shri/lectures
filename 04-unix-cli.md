@@ -13,3 +13,24 @@
     git ls-files . --exclude-standard --others -z | xargs -0 -I {} mv {} ~/.Trash/
 
 присылайте пулл реквесты с решением для SVN или с более элегантным подходом.
+
+Скрипт с сохранением структуры каталогов. В первом параметре необходимо передать путь до Git репозитория, во втором - путь до папки
+назначения:
+
+    #!/bin/bash
+
+    if [[ "$1" = "" || "$2" = "" ]]
+    then
+        echo "Указаны не все аргументы"
+        exit 0
+    fi
+    
+    repopath=$(readlink -e "$1")/ #Вычисляем абсолютный путь до папки с репом
+    trashpath=$(readlink -e "$2")/ #Вычисляем абсолютный путь до папки с трешэм
+    
+    cd "$repopath"
+    IFS=$'\n'
+    for line in $(git ls-files -o --exclude-standard); do
+        cd "$trashpath" && mkdir -p $(dirname "$line") && mv "$repopath""$line" "$trashpath""$(dirname "$line")"/
+    done
+    echo "Успешно"
