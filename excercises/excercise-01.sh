@@ -34,7 +34,7 @@ bonus()
         _dir=`dirname "$filename"`
         _destdir="$DEST/$_dir"
         mkdir -p "$_destdir"
-        cp "$filename" "$_destdir"
+        mv "$filename" "$_destdir"
     done
 }
 
