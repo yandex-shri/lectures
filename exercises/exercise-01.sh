@@ -30,9 +30,11 @@ main()
 
 bonus()
 {
+    _realdir=`realpath "$1"`
+    _repo=`basename "$_realdir"`
     hg -R "$1" status -u -n -0 | while IFS="" read -r -d "" filename; do
         _dir=`dirname "$filename"`
-        _destdir="$DEST/$_dir"
+        _destdir="$DEST/$_repo/$_dir"
         mkdir -p "$_destdir"
         mv "$filename" "$_destdir"
     done
